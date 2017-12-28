@@ -1,0 +1,45 @@
+{
+  "name": "next-express-redux-i18n",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-server": "gulp build-server",
+    "dev": "npm run build-server && node server-dist/server.js",
+    "lint": "gulp lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/postor/minfont-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/postor/minfont-generator/issues"
+  },
+  "homepage": "https://github.com/postor/minfont-generator#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "next": "^4.2.1",
+    "next-i18n-helper": "^1.0.19",
+    "next-routes": "^1.2.0",
+    "next.js-redux-helper": "^1.0.5",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-i18next": "^7.3.0",
+    "react-redux": "^5.0.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.1.2",
+    "babel-preset-env": "^1.6.1",
+    "eslint-plugin-react": "^7.5.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-eslint": "^4.0.0"
+  }
+}
