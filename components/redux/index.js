@@ -1,13 +1,12 @@
 import reduxHelper from 'next.js-redux-helper'
 import reduxWrapper from 'next.js-redux-helper/dest/wrapper'
-import { reducers as valueReducers } from './value'
+import { reducers as userReducers } from './user'
 
 const reducers = {
-  ...valueReducers,
+  ...userReducers,
 }
 
 var initialState = {
-  value: 5,
 }
 
 if (typeof window != 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__) {

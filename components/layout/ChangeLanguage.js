@@ -1,7 +1,6 @@
 import { helper } from './i18n'
 
-const ChangeLanguage = (props) => {
-  console.log(helper.getCurrentLanguage())
+const ChangeLanguage = () => {
   return (<select value={helper.getCurrentLanguage()} onChange={(e) =>
     helper.setCurrentLanguage(e.target.value)
   }>

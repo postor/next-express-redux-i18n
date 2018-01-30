@@ -3,7 +3,6 @@ import routes from '../../server/routes'
 import ChangeLanguage from './ChangeLanguage'
 
 const { Link } = routes
-const translateNS = ['common']
 
 const Header = ({ t }) => (<header>
   <nav>

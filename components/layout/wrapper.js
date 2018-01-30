@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { helper, wrapper as i18nWrapper } from './i18n'
+import { wrapper as i18nWrapper } from './i18n'
 import { wrapper as reduxWrapper } from '../redux'
+import { set as setUser } from '../redux/user'
 
 export default (Page) => reduxWrapper(i18nWrapper(connect()(class MyWrapper extends React.Component {
   constructor(props) {
@@ -14,8 +15,20 @@ export default (Page) => reduxWrapper(i18nWrapper(connect()(class MyWrapper exte
   }
 
   static async getInitialProps(ctx) {
-    var pageInitialProps = {}
+    let pageInitialProps = {}
     Page.getInitialProps && (pageInitialProps = await Page.getInitialProps(ctx))
+
+    //user
+    const { req, store } = ctx
+    try {
+      const user = await req.getUser()
+      if (req.user) {
+        console.log('set user'+JSON.stringify(user))
+        store.dispatch(setUser(user))
+      }
+    } catch (e) {
+      console.log(e)
+    }
     return pageInitialProps
   }
 

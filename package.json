@@ -22,8 +22,11 @@
   "homepage": "https://github.com/postor/minfont-generator#readme",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
+    "csurf": "^1.9.0",
     "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.1",
     "next": "^4.2.1",
     "next-i18n-helper": "^1.0.19",
     "next-routes": "^1.2.0",
@@ -31,7 +34,8 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-i18next": "^7.3.0",
-    "react-redux": "^5.0.6"
+    "react-redux": "^5.0.6",
+    "superagent": "^3.8.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
