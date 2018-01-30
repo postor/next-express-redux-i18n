@@ -14,7 +14,7 @@ const layout = (Page) => wrapper(class Layout extends React.Component {
     return (<div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Minfont Generator</title>
+        <title>next-express-redux-i18n</title>
         <meta name="description" content="generate minified font for your site" />
       </Head>
       <Header url={url} />
