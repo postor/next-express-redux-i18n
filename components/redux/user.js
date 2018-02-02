@@ -1,4 +1,5 @@
 import request from 'superagent'
+import { cookieName } from '../../jwt-config'
 
 export const actionTypes = {
   set: 'set_user',
@@ -68,7 +69,7 @@ export const set = (user) => {
  * clear user
  */
 export const clear = () => {
-  document.cookie = 'jwt='
+  document.cookie = `${cookieName}=`
   return {
     type: actionTypes.clear,
   }

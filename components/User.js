@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { login, clear } from './redux/user'
+import request from 'superagent'
+import { clear, login } from './redux/user'
 
 class User extends Component {
   constructor(props) {
@@ -8,7 +9,6 @@ class User extends Component {
     this.state = {
       username: '',
       password: '',
-      csrf: '',
     }
   }
 
@@ -20,13 +20,15 @@ class User extends Component {
 
     const { username } = user
     return (<div>
-      <p>hi, {username}|<a onClick={() => dispatch(clear())}>登出</a></p>
+      <p>hi, {username}|<a onClick={() => {
+        dispatch(clear())
+      }}>登出</a></p>
     </div>)
 
   }
 
   renderLogin() {
-    const { username, password, csrf } = this.state
+    const { username, password } = this.state
 
     return (<div>
       <p>
@@ -42,12 +44,12 @@ class User extends Component {
         })} />
       </p>
       <p><button onClick={() => this.login()}>login</button></p>
-      <p>user:123456</p>
+      <p>test:123</p>
     </div>)
   }
 
   login() {
-    const { username, password, csrf } = this.state
+    const { username, password } = this.state
     if (!username) {
       alert('empty username')
       return
@@ -56,13 +58,11 @@ class User extends Component {
       alert('empty password')
       return
     }
-
-    const { dispatch } = this.props
+    const {dispatch} = this.props
     dispatch(login(username, password))
   }
 }
 
-export default connect(state => {
-  const { user } = state
+export default connect(({ user }) => {
   return { user }
 })(User)

@@ -1,5 +1,6 @@
 import { Router } from 'express'
-import { sign } from './jwt'
+import { sign, maxAgeMiliSeconds } from '../jwt'
+import { cookieName } from '../../jwt-config'
 
 const router = new Router()
 
@@ -18,7 +19,7 @@ router.post('/login', (req, res) => {
     return
   }
 
-  if (username != 'user') {
+  if (username != 'test') {
     res.json({
       username,
       password,
@@ -27,7 +28,7 @@ router.post('/login', (req, res) => {
     return
   }
 
-  if (password != '123456') {
+  if (password != '123') {
     res.json({
       username,
       password,
@@ -39,7 +40,7 @@ router.post('/login', (req, res) => {
   sign({
     username
   }).then((token) => {
-    res.cookie('jwt', token)
+    res.cookie(cookieName, token, { maxAge: maxAgeMiliSeconds })
     res.json({
       user: { username },
       token

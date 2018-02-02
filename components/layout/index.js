@@ -1,8 +1,7 @@
 import React from 'react'
-import Head from 'next/head'
+import wrapper from './wrapper'
 import Header from './Header'
 import Footer from './Footer'
-import wrapper from './wrapper'
 
 const layout = (Page) => wrapper(class Layout extends React.Component {
   constructor(props) {
@@ -12,11 +11,6 @@ const layout = (Page) => wrapper(class Layout extends React.Component {
   render() {
     const { url } = this.props
     return (<div>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>next-express-redux-i18n</title>
-        <meta name="description" content="generate minified font for your site" />
-      </Head>
       <Header url={url} />
       <Page {...this.props} />
       <Footer />
@@ -30,5 +24,6 @@ const layout = (Page) => wrapper(class Layout extends React.Component {
     ])
   }
 })
+
 
 export default layout

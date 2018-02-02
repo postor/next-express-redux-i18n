@@ -2,7 +2,7 @@ import 'babel-polyfill'
 import express from 'express'
 import next from 'next'
 import cookieParser from 'cookie-parser'
-import { parseJwtCookie } from './jwt'
+import { parser } from './jwt'
 
 import routes from './routes'
 import apis from './apis'
@@ -15,7 +15,7 @@ const handler = routes.getRequestHandler(app)
 app.prepare().then(() => {
   const server = express()
   server.use('/', express.static('static'))
-  server.use(cookieParser(), parseJwtCookie)
+  server.use(cookieParser(), parser({ parserCacheName: 'jwtUser' }))
   server.use('/apis', apis)
   server.use(handler)
   server.listen(port, (err) => {

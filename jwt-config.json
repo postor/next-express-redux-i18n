@@ -1,0 +1,4 @@
+{
+  "parserMethodName": "getJwtUser",
+  "cookieName": "jwttoken"
+}

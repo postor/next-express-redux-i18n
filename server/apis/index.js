@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 
 import unauthed from './unauthed'
 import authed from './authed'
+import { guard } from '../jwt'
 
 const router = new Router()
 
@@ -12,21 +13,10 @@ const csrfSetHeader = (req, res, next) => {
   next()
 }
 
-const parseUser = (req, res, next) => {
-  req.getUser()
-    .then((user) => {
-      if (!user) {
-        return Promise.reject('login first')
-      }
-      next()
-    })
-    .catch((error) => res.json({ error }))
-}
-
 router.use(csurf({ cookie: true }), csrfSetHeader, bodyParser.json())
 
 router.use('/unauthed', unauthed)
-router.use('/authed', parseUser, authed)
+router.use('/authed', guard({}), authed)
 
 router.get('/csrf', (req, res) => {
   res.json({ error: 0 })
