@@ -1,3 +1,4 @@
+const { execSync, fork } = require('child_process')
 const gulp = require('gulp')
 const babel = require('gulp-babel')
 const eslint = require('gulp-eslint')
@@ -27,10 +28,19 @@ gulp.task('lint', function () {
 })
 
 
-gulp.task('jest', function () {
-  process.env.NODE_ENV = 'test';
-  return gulp.src('tests/__tests__').pipe(jest({
-    setupFiles: ['<rootDir>/tests/jest.setup.js'],
-    testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/']
-  }));
+gulp.task('test', function () {
+  var env = Object.create(process.env);
+  execSync('yarn.cmd build', { maxBuffer: 1024 * 1024 })
+  env.NODE_ENV = 'production'
+
+  return new Promise((resolve, reject) => {
+    const server = fork('./server-dist/server.js', { env, maxBuffer: 1024 * 1024 })
+    server.on('message', (m) => {
+      if (m === 'http ready') {
+        execSync('yarn.cmd jest', { maxBuffer: 1024 * 1024, stdio: [0, 1, 2] })
+        server.kill()
+        resolve()
+      }
+    })
+  })
 });

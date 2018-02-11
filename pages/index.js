@@ -3,9 +3,11 @@ import Layout from '../components/layout'
 import User from '../components/User'
 import AuthedApi from '../components/AuthedApi'
 import ReduxTest from '../components/ReduxTest'
+import { helper } from '../components/layout/i18n'
 
 const Index = ({ t }) => (<article>
   <p>{t('this is home page!')}</p>
+  <p>{helper.currentLang}</p>
   <User />
   <hr />
   <AuthedApi />

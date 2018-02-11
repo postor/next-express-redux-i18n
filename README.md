@@ -9,6 +9,8 @@
 - redux
 - es6 for server code
 - eslint
+- jwt
+- jest && visual test
 
 ## run
 

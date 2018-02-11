@@ -14,12 +14,16 @@ const handler = routes.getRequestHandler(app)
 
 app.prepare().then(() => {
   const server = express()
-  server.use('/', express.static('static'))
+  server.use('/', express.static('static'), (req, res, next) => {
+    console.log(req.url, req.get('Accept-Language'))
+    next()
+  })
   server.use(cookieParser(), parser({ parserCacheName: 'jwtUser' }))
   server.use('/apis', apis)
   server.use(handler)
   server.listen(port, (err) => {
     if (err) throw err
+    process.send && process.send('http ready')
     console.log(`> Ready on http://localhost:${port}`)
   })
 })

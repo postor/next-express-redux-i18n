@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --config=jest.config.js",
+    "jest": "cross-env NODE_ENV=test PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true jest --config=jest.config.js",
     "build-server": "gulp build-server",
     "dev": "npm run build-server && node server-dist/server.js",
-    "lint": "gulp lint"
+    "lint": "gulp lint",
+    "test": "gulp test",
+    "build": "yarn build-server && next build",
+    "start": "cross-env NODE_ENV=production node server-dist/server.js"
   },
   "repository": {
     "type": "git",
