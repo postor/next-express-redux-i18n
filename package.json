@@ -29,7 +29,7 @@
     "cookie-parser": "^1.4.3",
     "csurf": "^1.9.0",
     "express": "^4.16.2",
-    "next": "^4.2.1",
+    "next": "^5.0.0",
     "next-express-jwt": "^1.0.2",
     "next-i18n-helper": "^1.0.19",
     "next-routes": "^1.2.0",
