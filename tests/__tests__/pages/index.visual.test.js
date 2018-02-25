@@ -5,7 +5,6 @@ describe('index-differencify', () => {
     browserLangs.forEach((browserLang) => {
       cookieLangs.forEach((cookieLang) => {
         const d = `${device.name}-browser-${browserLang.lang}-cookie-${cookieLang.lang}`
-        //if(d!=`iphone-browser-en-cookie-`) return
         it(d, async () => {
           await launch()
             .emulate(device.emulate)
