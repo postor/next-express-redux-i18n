@@ -3,7 +3,6 @@ import devicesPreset from 'puppeteer/DeviceDescriptors'
 
 const iPhone = devicesPreset['iPhone 6']
 const iPad = devicesPreset['iPad']
-const differencify = new Differencify()
 
 export const browserLangs = [
   {
@@ -85,12 +84,14 @@ export const devices = [
   },
 ]
 
-export const executablePath = `C:\\Users\\postor\\AppData\\Local\\Google\\Chrome SxS\\Application\\chrome.exe`
+export const executablePath = `C:\\Users\\josh\\AppData\\Local\\Google\\Chrome SxS\\Application\\chrome.exe`
 
-export const launch = () => {
-  return differencify.init()
-    .launch({
-      executablePath,
-      //devtools : true,
-    })
+export const launch = async (testName) => {
+  const differencify = new Differencify()
+  const target = differencify.init({ testName, chain: false });
+  const browser = await target.launch({
+    executablePath,
+    //devtools : true,
+  })
+  return { browser, target, differencify }
 }

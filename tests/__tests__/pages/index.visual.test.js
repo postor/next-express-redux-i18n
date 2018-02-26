@@ -1,21 +1,27 @@
 import { browserLangs, cookieLangs, devices, launch } from '../../utils'
+import { inspect } from 'util'
 
 describe('index-differencify', () => {
+  let done = false
   devices.forEach((device) => {
     browserLangs.forEach((browserLang) => {
       cookieLangs.forEach((cookieLang) => {
         const d = `${device.name}-browser-${browserLang.lang}-cookie-${cookieLang.lang}`
         it(d, async () => {
-          await launch()
-            .emulate(device.emulate)
-            .setCookie(...cookieLang.cookies)
-            .evaluateOnNewDocument(browserLang.evaluate)
-            .setExtraHTTPHeaders(browserLang.headers)
-            .goto(`http://localhost:3000?d=${d}`)
-            .screenshot()
-            .toMatchSnapshot()
-            .close()
-            .end();
+          const { browser, target, differencify } = await launch(d)
+          const page = await browser.newPage()
+          await page.emulate(device.emulate)
+          await page.setCookie(...cookieLang.cookies)
+          await page.evaluateOnNewDocument(browserLang.evaluate)
+          await page.setExtraHTTPHeaders(browserLang.headers)
+          await page.goto(`http://localhost:3000?d=${d}`)
+          const image = await page.screenshot()
+          const result = await target.toMatchSnapshot(image)
+          expect(result).toBe(true)
+
+          await page.close()
+          await browser.close()
+          await differencify.cleanup()
         }, 60000)
       })
     })

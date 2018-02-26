@@ -7,7 +7,9 @@ import ReduxTest from '../components/ReduxTest'
 import { helper } from '../components/layout/i18n'
 
 const Index = ({ t }) => (<article>
-
+  <Head>
+    <title>{t('this is home page!')}</title>
+  </Head>
   <p>{t('this is home page!')}</p>
   <p>{helper.currentLang}</p>
   <User />
