@@ -19,4 +19,6 @@ ENV NODE_ENV=test
 
 RUN echo "{\"args\": [\"--no-sandbox\"]}" > tests/launch.json 
 
+RUN echo "npm run lint && npm run test" > docker-test.sh && chmod +x docker-test.sh
+
 CMD ["bash", "docker-test.sh"]
