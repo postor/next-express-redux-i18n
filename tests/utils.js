@@ -1,5 +1,8 @@
+import { exists } from 'fs-extra'
+import { join } from 'path'
 import Differencify from 'differencify'
 import devicesPreset from 'puppeteer/DeviceDescriptors'
+
 
 const iPhone = devicesPreset['iPhone 6']
 const iPad = devicesPreset['iPad']
@@ -84,14 +87,11 @@ export const devices = [
   },
 ]
 
-export const executablePath = `C:\\Users\\josh\\AppData\\Local\\Google\\Chrome SxS\\Application\\chrome.exe`
-
-export const launch = async (testName) => {
+export const launch = async (testName) => {  
   const differencify = new Differencify()
-  const target = differencify.init({ testName, chain: false });
-  const browser = await target.launch({
-    executablePath,
-    //devtools : true,
-  })
+  const target = differencify.init({ testName, chain: false })
+  const configExists = await exists(join(__dirname,'launch.json')) 
+  const launchConfig = configExists?require('./launch'):{}
+  const browser = await target.launch(launchConfig)
   return { browser, target, differencify }
 }

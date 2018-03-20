@@ -3,3 +3,4 @@
 /.next
 /yarn-error.log
 /tests/__tests__/pages/__image_snapshots__/*.png
+/yarn.lock
