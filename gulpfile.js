@@ -20,6 +20,7 @@ gulp.task('lint', function () {
     '!.next/**/*.js',
     '!server-dist/**/*.js',
     '!gulpfile.js',
+    '!tests/**/*.js',
   ])
     .pipe(eslint({ "extends": "eslint:recommended" }))
     .pipe(eslint.format())
