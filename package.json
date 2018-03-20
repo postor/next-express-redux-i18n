@@ -9,7 +9,7 @@
     "dev": "npm run build-server && node server-dist/server.js",
     "lint": "gulp lint",
     "test": "gulp test",
-    "build": "yarn build-server && next build",
+    "build": "npm run build-server && next build",
     "start": "cross-env NODE_ENV=production node server-dist/server.js"
   },
   "repository": {
