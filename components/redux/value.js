@@ -6,14 +6,14 @@ export const actionTypes = {
 }
 
 export const reducers = {
-  [actionTypes.incr]: (state = {}, action) => {
+  [actionTypes.incr]: (state = {}) => {
     const { value = 0 } = state
     return {
       ...state,
       value: value + 1,
     }
   },
-  [actionTypes.decr]: (state = {}, action) => {
+  [actionTypes.decr]: (state = {}) => {
     const { value = 0 } = state
     return {
       ...state,

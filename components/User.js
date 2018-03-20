@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import request from 'superagent'
 import { clear, login } from './redux/user'
 
 class User extends Component {
