@@ -1,8 +1,6 @@
 const { execSync, fork } = require('child_process')
 const gulp = require('gulp')
 const babel = require('gulp-babel')
-const eslint = require('gulp-eslint')
-const jest = require('gulp-jest').default
 
 gulp.task('build-server', () =>
   gulp.src('server/**/*.js')
@@ -15,6 +13,7 @@ gulp.task('build-server', () =>
 
 
 gulp.task('lint', function () {
+  const eslint = require('gulp-eslint')
   return gulp.src([
     './**/*.js',
     '!node_modules/**/*.js',
@@ -29,6 +28,7 @@ gulp.task('lint', function () {
 
 
 gulp.task('test', function () {
+  const jest = require('gulp-jest').default
   var env = Object.create(process.env);
   execSync('npm run build', { maxBuffer: 1024 * 1024 })
   env.NODE_ENV = 'production'
