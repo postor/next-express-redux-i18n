@@ -29,7 +29,6 @@ gulp.task('lint', function () {
 
 
 gulp.task('test', function () {
-  const jest = require('gulp-jest').default
   var env = Object.create(process.env);
   execSync('npm run build', { maxBuffer: 1024 * 1024 })
   env.NODE_ENV = 'production'
