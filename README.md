@@ -39,6 +39,35 @@ yarn test
 visual test will only generate screenshots for the first time
 
 
-你需要根据你的环境配置puppeteer，可以调整[package.json](./package.json)中的`scripts.jest`配置 和 [tests/utils.js](./tests/utils.js)中的`launch`函数
+in `tests/launch.json`, you can add other puppeteer launch options refer https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions 
 
-you need to config puppeteer according to your env, in [package.json](./package.json) you can modify `scripts.jest` and in [tests/utils.js](./tests/utils.js) modify `launch` function
+在`tests/launch.json`中, 你可以给添加更多的启动参数，参考 https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions 
+
+```
+{
+  "executablePath":"C:\\Users\\josh\\AppData\\Local\\Google\\Chrome SxS\\Application\\chrome.exe",
+}
+```
+
+and if you are using root , a launch config is needed, launch.json | 如果你使用root账号还需要配置launch参数
+
+```
+{
+  "args": ["--no-sandbox"]
+}
+```
+
+
+## CI/CD/DEVOPS
+
+如果你使用docker cloud，那么只需要fork本仓库后关联到docker cloud的仓库即可
+
+if you are using docker cloud, then the only thing you need to do is fork this repo and then connect to your docker cloud repo
+
+[postor/nextjs-cd](https://store.docker.com/community/images/postor/nextjs-cd) 就是fork之后通过docker cloud构建且通过测试的例子，你可以使用docker cloud的服务启动，也可以直接使用`docker run`命令来启动它
+
+[postor/nextjs-cd](https://store.docker.com/community/images/postor/nextjs-cd) is an example built and tested by docker cloud, you can create service on docker cloud, also you can use `docker run`
+
+```
+docker run -p80:80 -t postor/nextjs-cd
+```
